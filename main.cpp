@@ -1,15 +1,30 @@
 #include <iostream>
-
+#include <memory>
 
 int main() {
 
-    int* x = new int;
-    delete x;
-    delete x;
+    // Unique pointers
 
-     // If we delete pointers twice. We'll get an error. This is why we have smart pointers
-    // to free us from the hassle. Managing pointers can be hard
+    // A unique pointer is a pointer that owns the piece of memory it points to.
+    // The good thing with unique pointers are that they are automatically deleted after used
+    // We can't have two unique pointers pointing to the same memory location
 
+    std::unique_ptr<int> x(new int);
+
+    // Easier way
+    std::unique_ptr<int> y = std::make_unique<int>();
+
+    // We can use the auto keyword and the compiler can automatically infer what type it is
+    auto z = std::make_unique<int>();
+
+    auto v = std::make_unique<int>();
+
+    auto numbers = std::make_unique<int[]>(19);
+
+    numbers[0] = 10;
+    std::cout << numbers[0];
+
+    // std::cout << x;
     return 0;
 }
 
