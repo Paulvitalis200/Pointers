@@ -3,28 +3,23 @@
 
 int main() {
 
-    // Unique pointers
+    // Shared pointers
 
-    // A unique pointer is a pointer that owns the piece of memory it points to.
-    // The good thing with unique pointers are that they are automatically deleted after used
-    // We can't have two unique pointers pointing to the same memory location
+    // We can have two pointers pointing to the same location
 
-    std::unique_ptr<int> x(new int);
+    // std::shared_ptr<int> x(new int);
 
-    // Easier way
-    std::unique_ptr<int> y = std::make_unique<int>();
+    // std::shared_ptr<int> y = std::make_shared<int>();
 
-    // We can use the auto keyword and the compiler can automatically infer what type it is
-    auto z = std::make_unique<int>();
+    auto x = std::make_shared<int>();
 
-    auto v = std::make_unique<int>();
+    *x = 10;
 
-    auto numbers = std::make_unique<int[]>(19);
+    std::shared_ptr<int> y(x); // initialize pointer with x to explain the shared pointer logic
 
-    numbers[0] = 10;
-    std::cout << numbers[0];
+    if (x == y)
+        std::cout << "Equal";
 
-    // std::cout << x;
     return 0;
 }
 
