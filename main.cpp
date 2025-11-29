@@ -1,25 +1,35 @@
 #include <iostream>
 
-
-void increasePrice(double* price) {
-    *price *= 2;
+void printNumbers(int numbers[]) {
+    // The compiler will treat the int numbers[] as an integer pointer
+    // We cannot pass it to the size function e.g std::size(numbers); numbers is a memory address
+    // We also cant loop directly for (int number: numbers)
+    numbers[0] = 0;
 }
+
 
 int main() {
 
-    // Passing pointers to functions
+    // Relationship between arrays and pointers
 
-    // Modern way of passing large stuff to functions is using references
-    // We can also solve this using pointers though. It will have a little
-    // more work though
+    int numbers[] = {10, 20, 30};
+    int* ptr = numbers;
+    std::cout << *ptr << std::endl;
 
-    // We pass the address as the parameters to the increasePrice function
-    // We then declare the pointer as the required parameter using double* price
-    // Lastly we dereference the pointer to get the value of the price. *price *= 2
+    // When we cout the numbers array, it will give us an address
+    // The address is the location of the first element of the array in memory
+    // If we do *numbers, it will give us 10
 
-    double price = 100;
-    increasePrice(&price);
-    std::cout << price;
+    // We can create a pointer to the numbers. and if we dereference it, it will give us
+    // the first value. e.g *ptr will give us 10.
+    // We can also access other elements of the array using bracket notation e.g
+    // ptr[1]  will give us 2
 
+    // Function parameters that are arrays are passed by reference for EFFICIENCY
+    // We don't want to copy everything
+
+    printNumbers(numbers);
+
+    std::cout << numbers[0];
     return 0;
 }
