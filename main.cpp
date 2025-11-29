@@ -2,24 +2,38 @@
 
 
 int main() {
-    // Dynamic memory allocation
+    // Dynamic resizing an array
 
-    // We can declare an array and set it to have e.g 10 items
-    // However, its fixed and if it grows, What to do?
-    // Also if we receive only 1 item in the array. That is wasted memory
-    // This is where dynamic memory allocation comes in
+    int capacity = 5;
+    int* numbers = new int[capacity];
+    int entries = 0;
 
-    // Saved in stack memory
-    // int numbers[10];
+    while (true) {
+        std::cout << "Number: ";
+        std::cin >> numbers[entries];
 
-    // Heap (Free store) - Stored here, We are responsible for the cleanup.
-    int* numbers = new int[10]; // Initialize an initial size
-    int* number = new int; // Technically we never want to do this. But we';; see later
-    delete number;
-    delete[] numbers; // Deallocate the memory
-    number = nullptr;
-    numbers = nullptr; // Not mandatory but good practice
+        if (std::cin.fail()) break;
+        entries++;
 
+        if (entries == capacity) {
+            capacity = capacity * 2;
+            // Create a temp array (twice the size)
+            int* tempNumbers = new int[capacity];
+            // Copy all the elements
+            for (int i = 0; i < entries; i++)
+                tempNumbers[i] = numbers[i];
+            // Have "numbers" pointer point to the new array
+            delete[] numbers; // delete initial memory before
+            numbers = tempNumbers;
+        }
+    }
+
+    for (int i = 0; i < entries; i++)
+        std::cout << numbers[i] << std::endl;
+
+    delete[] numbers;
 
     return 0;
 }
+
+// WE NEVER HAVE TO DO THIS. We have smart pointers
