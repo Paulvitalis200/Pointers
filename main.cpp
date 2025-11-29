@@ -1,35 +1,27 @@
 #include <iostream>
 
-void printNumbers(int numbers[]) {
-    // The compiler will treat the int numbers[] as an integer pointer
-    // We cannot pass it to the size function e.g std::size(numbers); numbers is a memory address
-    // We also cant loop directly for (int number: numbers)
-    numbers[0] = 0;
-}
-
 
 int main() {
 
-    // Relationship between arrays and pointers
-
     int numbers[] = {10, 20, 30};
+
     int* ptr = numbers;
-    std::cout << *ptr << std::endl;
 
-    // When we cout the numbers array, it will give us an address
-    // The address is the location of the first element of the array in memory
-    // If we do *numbers, it will give us 10
 
-    // We can create a pointer to the numbers. and if we dereference it, it will give us
-    // the first value. e.g *ptr will give us 10.
-    // We can also access other elements of the array using bracket notation e.g
-    // ptr[1]  will give us 2
+    // Imagine address of the ptr is 100
 
-    // Function parameters that are arrays are passed by reference for EFFICIENCY
-    // We don't want to copy everything
+    ptr++;
+    // If ptr is incremented, value will be 104 and not 101. Because an integer has 4 bytes.
+    // It will point to the beginning of the item in the second place of the array
 
-    printNumbers(numbers);
+    std::cout << *ptr;
 
-    std::cout << numbers[0];
+    // We should see the second item if we print out *ptr; We can also do (ptr + 1)
+
+    // We can also decrease ptr-- or (ptr - 1)
+
+    // It is always best to use bracket notation ie. ptr[1]
+
+    // We cannot multiply or divide pointers. Only addition and subtraction
     return 0;
 }
