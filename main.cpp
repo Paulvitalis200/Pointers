@@ -2,26 +2,16 @@
 
 
 int main() {
+    int x = 10;
+    int y = 20;
 
-    int numbers[] = {10, 20, 30};
+    int* ptrX = &x;
+    int* ptrY = &x;
 
-    int* ptr = numbers;
+    if (ptrX != nullptr)
+        std::cout << *ptrX;
 
-
-    // Imagine address of the ptr is 100
-
-    ptr++;
-    // If ptr is incremented, value will be 104 and not 101. Because an integer has 4 bytes.
-    // It will point to the beginning of the item in the second place of the array
-
-    std::cout << *ptr;
-
-    // We should see the second item if we print out *ptr; We can also do (ptr + 1)
-
-    // We can also decrease ptr-- or (ptr - 1)
-
-    // It is always best to use bracket notation ie. ptr[1]
-
-    // We cannot multiply or divide pointers. Only addition and subtraction
+    // We can compare ptr addresses directly and see if they match or if they point to a nullptr
+    // We can also dereference the values and compare them
     return 0;
 }
