@@ -17,6 +17,10 @@ int main() {
 
     std::shared_ptr<int> y(x); // initialize pointer with x to explain the shared pointer logic
 
+    auto v = std::make_shared<int>();
+
+    auto t = v; // Alternative to the first method of std::shared_ptr<int> y(x);
+
     if (x == y)
         std::cout << "Equal";
 
